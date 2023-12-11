@@ -7,15 +7,21 @@ import moment from "moment";
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     getArticleById(article_id).then((data) => {
       setArticle(data.article);
+      setIsLoading(false);
     });
   }, []);
 
   const date = article.created_at;
   const formattedDate = moment(date).format("Do MMMM YYYY");
+
+  if (isLoading) {
+    return <p>Fetching Articles...</p>;
+  }
 
   return (
     <div id="single-article">

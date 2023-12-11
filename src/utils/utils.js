@@ -1,10 +1,10 @@
 import axios from "axios";
 
 const getArticles = () => {
-    return axios
+  return axios
     .get("https://nc-news-kx4n.onrender.com/api/articles")
     .then(({ data }) => {
-        return data.articles;
+      return data.articles;
     });
 };
 
