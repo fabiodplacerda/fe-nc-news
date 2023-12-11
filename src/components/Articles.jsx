@@ -9,7 +9,7 @@ const Articles = () => {
     getArticles().then((data) => {
       SetArticles(data);
     });
-  });
+  }, []);
 
   return (
     <>
