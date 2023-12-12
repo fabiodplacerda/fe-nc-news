@@ -1,14 +1,14 @@
-import axios from "axios";
+import axios from 'axios';
 
 const getArticles = () => {
   return axios
-    .get("https://nc-news-kx4n.onrender.com/api/articles")
+    .get('https://nc-news-kx4n.onrender.com/api/articles')
     .then(({ data }) => {
       return data.articles;
     });
 };
 
-const getArticleById = (id) => {
+const getArticleById = id => {
   return axios
     .get(`https://nc-news-kx4n.onrender.com/api/articles/${id}`)
     .then(({ data }) => {
@@ -16,7 +16,7 @@ const getArticleById = (id) => {
     });
 };
 
-const getCommentsByArticleId = (article_id) => {
+const getCommentsByArticleId = article_id => {
   return axios
     .get(
       `https://nc-news-kx4n.onrender.com/api/articles/${article_id}/comments`
@@ -26,4 +26,12 @@ const getCommentsByArticleId = (article_id) => {
     });
 };
 
-export { getArticles, getArticleById, getCommentsByArticleId };
+const getUsers = () => {
+  return axios
+    .get('https://nc-news-kx4n.onrender.com/api/users')
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export { getArticles, getArticleById, getCommentsByArticleId, getUsers };
