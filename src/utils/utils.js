@@ -16,4 +16,14 @@ const getArticleById = (id) => {
     });
 };
 
-export { getArticles, getArticleById };
+const getCommentsByArticleId = (article_id) => {
+  return axios
+    .get(
+      `https://nc-news-kx4n.onrender.com/api/articles/${article_id}/comments`
+    )
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+export { getArticles, getArticleById, getCommentsByArticleId };
