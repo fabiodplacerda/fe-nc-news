@@ -43,6 +43,20 @@
   text-align: center;
 }
 
+#comment-form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+}
+#comment-form textarea {
+  padding: 15px;
+}
+#comment-form button {
+  margin-top: 10px;
+  width: 120px;
+}
+
 @media only screen and (max-width: 870px) {
   body {
     background-color: lightblue;
