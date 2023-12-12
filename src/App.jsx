@@ -1,4 +1,5 @@
 import Articles from "./components/Articles";
+import Comments from "./components/Comments";
 import Header from "./components/Header";
 import Homepage from "./components/Homepage";
 
@@ -11,6 +12,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/articles" element={<Articles />}></Route>
+        <Route
+          path="/articles/:article_id/comments"
+          element={<Comments />}
+        ></Route>
       </Routes>
     </>
   );
