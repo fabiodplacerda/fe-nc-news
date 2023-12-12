@@ -16,6 +16,16 @@ const getArticleById = id => {
     });
 };
 
+const getCommentsByArticleId = article_id => {
+  return axios
+    .get(
+      `https://nc-news-kx4n.onrender.com/api/articles/${article_id}/comments`
+    )
+    .then(({ data }) => {
+      return data;
+    });
+};
+
 const patchArticleVotesBy = (id, vote) => {
   const patchBody = {
     inc_votes: vote,
@@ -26,4 +36,9 @@ const patchArticleVotesBy = (id, vote) => {
   );
 };
 
-export { getArticles, getArticleById, patchArticleVotesBy };
+export {
+  getArticles,
+  getArticleById,
+  getCommentsByArticleId,
+  patchArticleVotesBy,
+};

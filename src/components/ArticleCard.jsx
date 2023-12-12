@@ -9,7 +9,7 @@ const ArticleCard = ({ article }) => {
         <h4>{article.topic}</h4>
         <img
           src={article.article_img_url}
-          alt=""
+          alt={article.title}
           className="article-card-img"
         />
         <p>votes: {article.votes}</p>
