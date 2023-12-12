@@ -28,7 +28,6 @@ const SingleArticle = () => {
   }
 
   const upVote = event => {
-    console.log(event);
     patchArticleVotesBy(article_id, +1);
     setArticle(currArticle => {
       return { ...currArticle, votes: currArticle.votes + 1 };
@@ -67,15 +66,19 @@ const SingleArticle = () => {
               onClick={() => {
                 upVote();
               }}
+              className="vote-btn"
             />
             <ThumbDownIcon
               onClick={() => {
                 downVote();
               }}
+              className="vote-btn"
             />
             <p>{article.votes}</p>
           </div>
-          <p id="comments">Comments: {article.comment_count}</p>
+          <a href="#comments-list" id="comments">
+            Comments: {article.comment_count}
+          </a>
         </div>
       </div>
       <Comments article_id={article_id} />
