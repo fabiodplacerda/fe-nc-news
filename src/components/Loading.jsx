@@ -1,5 +1,5 @@
-const Loading = () => {
-  return <p>Loading...</p>;
+const Loading = ({ dynamicText }) => {
+  return <p>Loading {dynamicText}...</p>;
 };
 
 export default Loading;
