@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getArticleById } from "../utils/utils";
-import "./SingleArticle.css";
-import moment from "moment";
-import Comments from "./Comments";
-import Loading from "./Loading";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getArticleById } from '../utils/utils';
+import './SingleArticle.css';
+import moment from 'moment';
+import Comments from './Comments';
+import Loading from './Loading';
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -12,17 +12,17 @@ const SingleArticle = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    getArticleById(article_id).then((data) => {
+    getArticleById(article_id).then(data => {
       setArticle(data.article);
       setIsLoading(false);
     });
   }, []);
 
   const date = article.created_at;
-  const formattedDate = moment(date).format("Do MMMM YYYY");
+  const formattedDate = moment(date).format('Do MMMM YYYY');
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading dynamicText={'article'} />;
   }
 
   return (

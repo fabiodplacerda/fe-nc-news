@@ -19,7 +19,7 @@ const Articles = () => {
   }, []);
 
   if (isLoading) {
-    return <Loading />;
+    return <Loading dynamicText={"articles"}/>;
   }
 
   return (
