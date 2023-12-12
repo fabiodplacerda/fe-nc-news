@@ -1,9 +1,8 @@
-import { Routes, Route } from "react-router-dom";
-import SingleArticle from "./components/SingleArticle";
-import Articles from "./components/Articles";
-import Comments from "./components/Comments";
-import Header from "./components/Header";
-import Homepage from "./components/Homepage";
+import { Routes, Route } from 'react-router-dom';
+import SingleArticle from './components/SingleArticle';
+import Articles from './components/Articles';
+import Header from './components/Header';
+import Homepage from './components/Homepage';
 
 function App() {
   return (

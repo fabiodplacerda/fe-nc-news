@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
-import { getArticles } from "../utils/utils";
-import ArticleCard from "./ArticleCard";
+import { useEffect, useState } from 'react';
+import { getArticles } from '../utils/utils';
+import ArticleCard from './ArticleCard';
+import Loading from './Loading';
 
 const Articles = () => {
   const [articles, SetArticles] = useState([]);
@@ -8,17 +9,17 @@ const Articles = () => {
 
   useEffect(() => {
     getArticles()
-      .then((data) => {
+      .then(data => {
         SetArticles(data);
         setIsLoading(false);
       })
-      .catch((err) => {
+      .catch(err => {
         console.log(err);
       });
   }, []);
 
   if (isLoading) {
-    return <p>Fetching Articles...</p>;
+    return <Loading />;
   }
 
   return (
@@ -26,7 +27,7 @@ const Articles = () => {
       <div id="articles">
         <h2>Articles</h2>
         <ul id="articles-list">
-          {articles.map((article) => {
+          {articles.map(article => {
             return <ArticleCard key={article.article_id} article={article} />;
           })}
         </ul>
