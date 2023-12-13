@@ -24,7 +24,7 @@ const Comments = ({ article_id }) => {
   }
 
   return (
-    <ul>
+    <ul id="comments-list">
       {comments.map(comment => {
         return <Comment key={comment.comment_id} comment={comment} />;
       })}

@@ -6,7 +6,14 @@
   padding: 20px;
 }
 
-#votes,
+.votes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.votes > * {
+  margin: 5px;
+}
 #comments {
   display: inline;
   margin: 10px;
@@ -41,6 +48,14 @@
 
 #single-article {
   text-align: center;
+}
+
+.vote-btn {
+  cursor: pointer;
+}
+
+.error-msg {
+  color: red;
 }
 
 @media only screen and (max-width: 870px) {
