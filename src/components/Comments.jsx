@@ -48,8 +48,8 @@ const Comments = ({ article_id, setCommentCount }) => {
         })}
       </ul>
 
-      {deleted ? <p id="pop-up-msg">Comment deleted!</p> : null}
-      {error ? <p id="pop-up-msg">Ops Something went wrong!</p> : null}
+      {deleted ? <p className="pop-up-msg">Comment deleted!</p> : null}
+      {error ? <p className="pop-up-msg">Ops Something went wrong!</p> : null}
     </>
   );
 };

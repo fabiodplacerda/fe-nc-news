@@ -85,7 +85,7 @@
   pointer-events: none;
 }
 
-#deleted-msg {
+.pop-up-msg {
   border-radius: 5px;
   padding: 15px 0;
   width: 200px;
