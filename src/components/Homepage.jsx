@@ -4,6 +4,7 @@ import { getUsers } from '../utils/utils';
 
 const Homepage = () => {
   const { user, setUser } = useContext(UserContext);
+
   const [input, setInput] = useState('');
   const [errorMessage, setErrorMessage] = useState(false);
 

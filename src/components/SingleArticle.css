@@ -57,6 +57,11 @@
   width: 120px;
 }
 
+#comment-adder-msg {
+  text-align: center;
+  margin: 50px 0;
+}
+
 @media only screen and (max-width: 870px) {
   body {
     background-color: lightblue;

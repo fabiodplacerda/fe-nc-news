@@ -50,18 +50,7 @@ const SingleArticle = () => {
           <p id="comments">Comments: {article.comment_count}</p>
         </div>
       </div>
-      <form id="comment-form">
-        <textarea
-          name=""
-          id=""
-          cols="100"
-          rows="10"
-          required
-          minlength="5"
-          maxlength="400"
-        ></textarea>
-        <button>Post comment</button>
-      </form>
+
       <Comments article_id={article_id} />
     </>
   );

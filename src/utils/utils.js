@@ -34,4 +34,21 @@ const getUsers = () => {
     });
 };
 
-export { getArticles, getArticleById, getCommentsByArticleId, getUsers };
+const postComment = (article_id, username, body) => {
+  const postBody = {
+    username,
+    body,
+  };
+  return axios.post(
+    `https://nc-news-kx4n.onrender.com/api/articles/${article_id}/comments`,
+    postBody
+  );
+};
+
+export {
+  getArticles,
+  getArticleById,
+  getCommentsByArticleId,
+  getUsers,
+  postComment,
+};
