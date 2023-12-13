@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { UserContext } from '../contexts/userContext';
 import { getUsers } from '../utils/utils';
 
@@ -8,6 +8,13 @@ const Homepage = () => {
   const [input, setInput] = useState('');
   const [errorMessage, setErrorMessage] = useState(false);
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+      setUser(storedUser);
+    }
+  }, [setUser]);
+
   const inputHandler = event => {
     setInput(event.target.value);
     setErrorMessage(false);
@@ -16,9 +23,7 @@ const Homepage = () => {
   const submitHandler = event => {
     event.preventDefault();
     getUsers().then(({ users }) => {
-      const username = users.map(userData => {
-        return userData.username;
-      });
+      const username = users.map(userData => userData.username);
       if (username.includes(input)) {
         setUser(input);
       } else {
