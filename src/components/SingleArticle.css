@@ -50,12 +50,39 @@
   text-align: center;
 }
 
+#comment-form {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  max-width: 1000px;
+}
+#comment-form textarea {
+  padding: 15px;
+}
+#comment-form button {
+  margin-top: 10px;
+  width: 120px;
+}
+
+#comment-adder-msg {
+  text-align: center;
+  margin: 50px 0;
+}
+
 .vote-btn {
   cursor: pointer;
 }
 
 .error-msg {
   color: red;
+}
+
+.success-msg {
+  color: green;
+}
+
+.disabled {
+  pointer-events: none;
 }
 
 @media only screen and (max-width: 870px) {

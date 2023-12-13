@@ -3,8 +3,9 @@ import { getCommentsByArticleId } from '../utils/utils';
 
 import Comment from './Comment';
 import Loading from './Loading';
+import CommentAdder from './CommentAdder';
 
-const Comments = ({ article_id }) => {
+const Comments = ({ article_id, setCommentCount }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -24,11 +25,18 @@ const Comments = ({ article_id }) => {
   }
 
   return (
-    <ul id="comments-list">
-      {comments.map(comment => {
-        return <Comment key={comment.comment_id} comment={comment} />;
-      })}
-    </ul>
+    <>
+      <CommentAdder
+        article_id={article_id}
+        setComments={setComments}
+        setCommentCount={setCommentCount}
+      />
+      <ul id="comments-list">
+        {comments.map(comment => {
+          return <Comment key={comment.comment_id} comment={comment} />;
+        })}
+      </ul>
+    </>
   );
 };
 

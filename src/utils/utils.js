@@ -36,9 +36,34 @@ const patchArticleVotesBy = (id, vote) => {
   );
 };
 
+const getUsers = () => {
+  return axios
+    .get('https://nc-news-kx4n.onrender.com/api/users')
+    .then(({ data }) => {
+      return data;
+    });
+};
+
+const postComment = (article_id, username, body) => {
+  const postBody = {
+    username,
+    body,
+  };
+  return axios
+    .post(
+      `https://nc-news-kx4n.onrender.com/api/articles/${article_id}/comments`,
+      postBody
+    )
+    .then(({ data }) => {
+      return data.comment;
+    });
+};
+
 export {
   getArticles,
   getArticleById,
   getCommentsByArticleId,
   patchArticleVotesBy,
+  getUsers,
+  postComment,
 };
