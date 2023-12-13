@@ -12,6 +12,7 @@ const SingleArticle = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getArticleById(article_id).then(data => {
@@ -28,16 +29,22 @@ const SingleArticle = () => {
   }
 
   const upVote = event => {
-    patchArticleVotesBy(article_id, +1);
+    patchArticleVotesBy(article_id, +1).catch(err => {
+      setError(true);
+    });
     setArticle(currArticle => {
       return { ...currArticle, votes: currArticle.votes + 1 };
     });
+    setError(false);
   };
   const downVote = () => {
-    patchArticleVotesBy(article_id, -1);
+    patchArticleVotesBy(article_id, -1).catch(err => {
+      setError(true);
+    });
     setArticle(currArticle => {
       return { ...currArticle, votes: currArticle.votes - 1 };
     });
+    setError(false);
   };
 
   return (
@@ -76,6 +83,9 @@ const SingleArticle = () => {
             />
             <p>{article.votes}</p>
           </div>
+          <p className="error-msg">
+            {error ? 'Something went wrong, Please try again!' : null}
+          </p>
           <a href="#comments-list" id="comments">
             Comments: {article.comment_count}
           </a>
