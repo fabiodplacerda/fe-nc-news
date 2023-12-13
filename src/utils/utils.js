@@ -49,10 +49,14 @@ const postComment = (article_id, username, body) => {
     username,
     body,
   };
-  return axios.post(
-    `https://nc-news-kx4n.onrender.com/api/articles/${article_id}/comments`,
-    postBody
-  );
+  return axios
+    .post(
+      `https://nc-news-kx4n.onrender.com/api/articles/${article_id}/comments`,
+      postBody
+    )
+    .then(({ data }) => {
+      return data.comment;
+    });
 };
 
 export {
