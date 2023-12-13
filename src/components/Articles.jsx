@@ -46,8 +46,8 @@ const Articles = () => {
           <select onChange={changeHandler} value={sort}>
             <option value="">Select an option</option>
             <option value="votes&order=DESC">Most Popular</option>
-            <option value="created_at&order=ASC">Most Recent Articles</option>
-            <option value="created_at&order=DESC">Oldest Articles</option>
+            <option value="created_at&order=DESC">Most Recent Articles</option>
+            <option value="created_at&order=ASC">Oldest Articles</option>
             <option value="author&order=ASC">Author (Ascending)</option>
             <option value="author&order=DESC">Author (Descending)</option>
             <option value="title&order=ASC">Title (Ascending)</option>

@@ -6,6 +6,7 @@ const getArticles = (query, sort_by) => {
     return axios
       .get(`https://nc-news-kx4n.onrender.com/api/articles?${sort_by}`)
       .then(({ data }) => {
+        console.log(data.articles);
         return data.articles;
       });
   }
