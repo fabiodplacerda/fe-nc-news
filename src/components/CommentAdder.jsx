@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { UserContext } from '../contexts/userContext';
 import { postComment } from '../utils/utils';
 
-const CommentAdder = ({ article_id, setComments }) => {
+const CommentAdder = ({ article_id, setComments, setCommentCount }) => {
   const { user } = useContext(UserContext);
   const [commentInput, setCommentInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -24,6 +24,9 @@ const CommentAdder = ({ article_id, setComments }) => {
         setTimeout(() => {
           setIsLoading(false);
           setSuccess(true);
+          setCommentCount(currCount => {
+            return ++currCount;
+          });
           setComments(currComments => {
             return [newComment, ...currComments];
           });

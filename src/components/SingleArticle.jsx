@@ -11,12 +11,14 @@ import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
+  const [commentCount, setCommentCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     getArticleById(article_id).then(data => {
       setArticle(data.article);
+      setCommentCount(data.article.comment_count);
       setIsLoading(false);
     });
   }, []);
@@ -87,12 +89,12 @@ const SingleArticle = () => {
             {error ? 'Something went wrong, Please try again!' : null}
           </p>
           <a href="#comments-list" id="comments">
-            Comments: {article.comment_count}
+            Comments: {commentCount}
           </a>
         </div>
       </div>
 
-      <Comments article_id={article_id} />
+      <Comments article_id={article_id} setCommentCount={setCommentCount} />
     </>
   );
 };
