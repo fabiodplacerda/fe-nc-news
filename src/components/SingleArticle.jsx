@@ -1,15 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getArticleById } from '../utils/utils';
+import { getArticleById, patchArticleVotesBy } from '../utils/utils';
 import './SingleArticle.css';
 import moment from 'moment';
 import Comments from './Comments';
 import Loading from './Loading';
+import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
+import ThumbDownIcon from '@mui/icons-material/ThumbDown';
 
 const SingleArticle = () => {
   const { article_id } = useParams();
   const [article, setArticle] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getArticleById(article_id).then(data => {
@@ -24,6 +27,25 @@ const SingleArticle = () => {
   if (isLoading) {
     return <Loading dynamicText={'article'} />;
   }
+
+  const upVote = event => {
+    patchArticleVotesBy(article_id, +1).catch(err => {
+      setError(true);
+    });
+    setArticle(currArticle => {
+      return { ...currArticle, votes: currArticle.votes + 1 };
+    });
+    setError(false);
+  };
+  const downVote = () => {
+    patchArticleVotesBy(article_id, -1).catch(err => {
+      setError(true);
+    });
+    setArticle(currArticle => {
+      return { ...currArticle, votes: currArticle.votes - 1 };
+    });
+    setError(false);
+  };
 
   return (
     <>
@@ -46,8 +68,27 @@ const SingleArticle = () => {
         />
         <p id="article-body">{article.body}</p>
         <div id="votes-comments-container">
-          <p id="votes">Votes: {article.votes}</p>
-          <p id="comments">Comments: {article.comment_count}</p>
+          <div className="votes">
+            <ThumbUpAltIcon
+              onClick={() => {
+                upVote();
+              }}
+              className="vote-btn"
+            />
+            <ThumbDownIcon
+              onClick={() => {
+                downVote();
+              }}
+              className="vote-btn"
+            />
+            <p>{article.votes}</p>
+          </div>
+          <p className="error-msg">
+            {error ? 'Something went wrong, Please try again!' : null}
+          </p>
+          <a href="#comments-list" id="comments">
+            Comments: {article.comment_count}
+          </a>
         </div>
       </div>
 

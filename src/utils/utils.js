@@ -26,6 +26,16 @@ const getCommentsByArticleId = article_id => {
     });
 };
 
+const patchArticleVotesBy = (id, vote) => {
+  const patchBody = {
+    inc_votes: vote,
+  };
+  return axios.patch(
+    `https://nc-news-kx4n.onrender.com/api/articles/${id}`,
+    patchBody
+  );
+};
+
 const getUsers = () => {
   return axios
     .get('https://nc-news-kx4n.onrender.com/api/users')
@@ -49,6 +59,7 @@ export {
   getArticles,
   getArticleById,
   getCommentsByArticleId,
+  patchArticleVotesBy,
   getUsers,
   postComment,
 };

@@ -27,7 +27,7 @@ const Comments = ({ article_id }) => {
   return (
     <>
       <CommentAdder article_id={article_id} setComments={setComments} />
-      <ul>
+      <ul id="comments-list">
         {comments.map(comment => {
           return <Comment key={comment.comment_id} comment={comment} />;
         })}
