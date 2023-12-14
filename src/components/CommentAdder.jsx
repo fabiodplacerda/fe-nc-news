@@ -17,10 +17,9 @@ const CommentAdder = ({ article_id, setComments, setCommentCount }) => {
 
   const submitHandler = event => {
     event.preventDefault();
+    setIsLoading(true);
     postComment(article_id, user, commentInput)
       .then(newComment => {
-        setIsLoading(true);
-
         setTimeout(() => {
           setIsLoading(false);
           setSuccess(true);
@@ -37,6 +36,7 @@ const CommentAdder = ({ article_id, setComments, setCommentCount }) => {
       })
       .catch(err => {
         setError(true);
+        setIsLoading(false);
       });
 
     setCommentInput('');
