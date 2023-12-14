@@ -10,11 +10,15 @@ const Articles = () => {
   const [articles, SetArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  const [sort, setSort] = useState('');
+  const [sort, setSort] = useState('votes');
+  const [order, setOrder] = useState('DESC');
 
   const changeHandler = event => {
-    setSearchParams({ sort: event.target.value });
-    setSort(event.target.value);
+    const sortingValues = event.target.value.split(',');
+
+    setSearchParams({ sort_by: sortingValues[0], order: sortingValues[1] });
+    setSort(sortingValues[0]);
+    setOrder(sortingValues[1]);
   };
 
   const [searchParams, setSearchParams] = useSearchParams();
@@ -22,7 +26,7 @@ const Articles = () => {
   const query = searchParams.get('topic');
 
   useEffect(() => {
-    getArticles(query, sort)
+    getArticles(query, sort, order)
       .then(data => {
         SetArticles(data);
         setIsLoading(false);
@@ -43,15 +47,14 @@ const Articles = () => {
         <Topics setIsLoading={setIsLoading} />
         <form>
           <label htmlFor="">Sort by</label>
-          <select onChange={changeHandler} value={sort}>
-            <option value="">Select an option</option>
-            <option value="votes&order=DESC">Most Popular</option>
-            <option value="created_at&order=DESC">Most Recent Articles</option>
-            <option value="created_at&order=ASC">Oldest Articles</option>
-            <option value="author&order=ASC">Author (Ascending)</option>
-            <option value="author&order=DESC">Author (Descending)</option>
-            <option value="title&order=ASC">Title (Ascending)</option>
-            <option value="title&order=DESC">Title (Descending)</option>
+          <select onChange={changeHandler}>
+            <option value="votes,DESC">Most Popular </option>
+            <option value="created_at,DESC">Most Recent Articles</option>
+            <option value="created_at,ASC">Oldest Articles</option>
+            <option value="author,ASC">Author (Ascending)</option>
+            <option value="author,DESC">Author (Descending)</option>
+            <option value="title,ASC">Title (Ascending)</option>
+            <option value="title,DESC">Title (Descending)</option>
           </select>
         </form>
         {/* <SortByForm /> */}
