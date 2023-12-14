@@ -1,28 +1,16 @@
 import axios from 'axios';
 
 const getArticles = (query, sort_by) => {
-  console.log(sort_by);
-  if (sort_by) {
-    return axios
-      .get(`https://nc-news-kx4n.onrender.com/api/articles?${sort_by}`)
-      .then(({ data }) => {
-        console.log(data.articles);
-        return data.articles;
-      });
-  }
-  if (query) {
-    return axios
-      .get(`https://nc-news-kx4n.onrender.com/api/articles?topic=${query}`)
-      .then(({ data }) => {
-        return data.articles;
-      });
-  } else {
-    return axios
-      .get('https://nc-news-kx4n.onrender.com/api/articles')
-      .then(({ data }) => {
-        return data.articles;
-      });
-  }
+  return axios
+    .get('https://nc-news-kx4n.onrender.com/api/articles', {
+      params: {
+        topic: query,
+        sort_by,
+      },
+    })
+    .then(({ data }) => {
+      return data.articles;
+    });
 };
 
 const getArticleById = id => {

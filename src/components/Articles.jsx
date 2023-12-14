@@ -40,7 +40,7 @@ const Articles = () => {
     <>
       <div id="articles">
         <h2>Articles</h2>
-        <Topics />
+        <Topics setIsLoading={setIsLoading} />
         <form>
           <label htmlFor="">Sort by</label>
           <select onChange={changeHandler} value={sort}>
