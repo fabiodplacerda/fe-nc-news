@@ -53,7 +53,6 @@ const CommentAdder = ({ article_id, setComments, setCommentCount }) => {
             rows="10"
             required
             minLength="5"
-            maxLength="400"
             onChange={inputHandler}
             value={commentInput}
           ></textarea>
