@@ -44,28 +44,31 @@ const CommentAdder = ({ article_id, setComments, setCommentCount }) => {
 
   if (user !== '') {
     return (
-      <form id="comment-form" onSubmit={submitHandler}>
-        <textarea
-          name=""
-          id=""
-          cols="100"
-          rows="10"
-          required
-          minLength="5"
-          maxLength="400"
-          onChange={inputHandler}
-          value={commentInput}
-        ></textarea>
-        <button disabled={isLoading ? true : false}>
-          {isLoading ? 'Posting...' : 'Post comment'}
-        </button>
-        <p className="success-msg">
-          {success ? 'comment successfully posted' : null}
-        </p>
-        <p className="error-msg">
-          {error ? 'something went wrong, please try again' : null}
-        </p>
-      </form>
+      <>
+        <form id="comment-form" onSubmit={submitHandler}>
+          <textarea
+            name=""
+            id=""
+            cols="100"
+            rows="10"
+            required
+            minLength="5"
+            maxLength="400"
+            onChange={inputHandler}
+            value={commentInput}
+          ></textarea>
+          <p>{commentInput.length} of 300 max characters</p>
+          <button disabled={isLoading ? true : false}>
+            {isLoading ? 'Posting...' : 'Post comment'}
+          </button>
+          <p className="success-msg">
+            {success ? 'comment successfully posted' : null}
+          </p>
+          <p className="error-msg">
+            {error ? 'something went wrong, please try again' : null}
+          </p>
+        </form>
+      </>
     );
   } else {
     return (
