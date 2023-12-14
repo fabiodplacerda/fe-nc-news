@@ -8,6 +8,8 @@ import CommentAdder from './CommentAdder';
 const Comments = ({ article_id, setCommentCount }) => {
   const [comments, setComments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [deleted, setDeleted] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     getCommentsByArticleId(article_id).then(data => {
@@ -33,9 +35,21 @@ const Comments = ({ article_id, setCommentCount }) => {
       />
       <ul id="comments-list">
         {comments.map(comment => {
-          return <Comment key={comment.comment_id} comment={comment} />;
+          return (
+            <Comment
+              key={comment.comment_id}
+              comment={comment}
+              setComments={setComments}
+              setCommentCount={setCommentCount}
+              setDeleted={setDeleted}
+              setError={setError}
+            />
+          );
         })}
       </ul>
+
+      {deleted ? <p className="pop-up-msg">Comment deleted!</p> : null}
+      {error ? <p className="pop-up-msg">Ops Something went wrong!</p> : null}
     </>
   );
 };
