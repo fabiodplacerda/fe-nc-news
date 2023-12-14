@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { getTopics } from '../utils/utils';
 import { Link } from 'react-router-dom';
 
-const Topics = () => {
+const Topics = ({ setIsLoading }) => {
   const [topics, setTopics] = useState([]);
 
   useEffect(() => {
@@ -12,9 +12,13 @@ const Topics = () => {
     });
   }, []);
 
+  const clickHandler = () => {
+    setIsLoading(true);
+  };
+
   return (
     <ul className="topics">
-      <Link to={'/articles'} className="topic-link">
+      <Link to={'/articles'} className="topic-link" onClick={clickHandler}>
         all
       </Link>
       {topics.map(topic => {
@@ -23,6 +27,7 @@ const Topics = () => {
             className="topic-link"
             to={`/articles?topic=${topic.slug}`}
             key={topic.slug}
+            onClick={clickHandler}
           >
             {topic.slug}
           </Link>

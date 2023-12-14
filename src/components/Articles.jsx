@@ -32,7 +32,7 @@ const Articles = () => {
     <>
       <div id="articles">
         <h2>Articles</h2>
-        <Topics />
+        <Topics setIsLoading={setIsLoading} />
         <ul id="articles-list">
           {articles.map(article => {
             return <ArticleCard key={article.article_id} article={article} />;
