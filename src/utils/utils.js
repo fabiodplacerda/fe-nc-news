@@ -76,6 +76,10 @@ const postComment = (article_id, username, body) => {
     });
 };
 
+const deleteCommentById = id => {
+  return axios.delete(`https://nc-news-kx4n.onrender.com/api/comments/${id}`);
+};
+
 const getTopics = () => {
   return axios
     .get(`https://nc-news-kx4n.onrender.com/api/topics`)
@@ -91,5 +95,6 @@ export {
   patchArticleVotesBy,
   getUsers,
   postComment,
+  deleteCommentById,
   getTopics,
 };
