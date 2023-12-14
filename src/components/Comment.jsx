@@ -19,11 +19,10 @@ const Comment = ({
   const [isLoading, setIsLoading] = useState(false);
 
   const deleteHandler = () => {
+    setIsLoading(true);
     deleteCommentById(comment.comment_id)
       .then(() => {
         setError(false);
-        setIsLoading(true);
-
         setTimeout(() => {
           setIsLoading(false);
           setDeleted(true);
@@ -42,6 +41,7 @@ const Comment = ({
         }, 2000);
       })
       .catch(err => {
+        setIsLoading(false);
         setError(true);
         setTimeout(() => {
           setError(false);
