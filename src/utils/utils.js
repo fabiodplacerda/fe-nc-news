@@ -1,8 +1,12 @@
 import axios from 'axios';
 
-const getArticles = () => {
+const getArticles = query => {
   return axios
-    .get('https://nc-news-kx4n.onrender.com/api/articles')
+    .get('https://nc-news-kx4n.onrender.com/api/articles', {
+      params: {
+        topic: query,
+      },
+    })
     .then(({ data }) => {
       return data.articles;
     });
@@ -59,6 +63,14 @@ const postComment = (article_id, username, body) => {
     });
 };
 
+const getTopics = () => {
+  return axios
+    .get(`https://nc-news-kx4n.onrender.com/api/topics`)
+    .then(({ data }) => {
+      return data;
+    });
+};
+
 const deleteCommentById = id => {
   return axios.delete(`https://nc-news-kx4n.onrender.com/api/comments/${id}`);
 };
@@ -70,5 +82,6 @@ export {
   patchArticleVotesBy,
   getUsers,
   postComment,
+  getTopics,
   deleteCommentById,
 };

@@ -14,3 +14,9 @@ nav a {
 a {
   text-decoration: none;
 }
+
+.topic-link {
+  margin: 10px;
+  text-transform: capitalize;
+  font-size: 20px;
+}
