@@ -15,13 +15,21 @@ const getArticles = (query, sort_by, order) => {
     })
     .then(({ data }) => {
       return data.articles;
+    })
+    .catch(({ response }) => {
+      return Promise.reject(response);
     });
 };
 
 const getArticleById = id => {
-  return ncNewApi.get(`/articles/${id}`).then(({ data }) => {
-    return data;
-  });
+  return ncNewApi
+    .get(`/articles/${id}`)
+    .then(({ data }) => {
+      return data;
+    })
+    .catch(({ response }) => {
+      return Promise.reject(response);
+    });
 };
 
 const getCommentsByArticleId = article_id => {

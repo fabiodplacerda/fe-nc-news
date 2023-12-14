@@ -4,6 +4,7 @@ import Articles from './components/Articles';
 import Header from './components/Header';
 import Homepage from './components/Homepage';
 import { UserProvider } from './contexts/userContext';
+import Error from './components/Error';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route path="/" element={<Homepage />}></Route>
         <Route path="/articles" element={<Articles />}></Route>
         <Route path="/articles/:article_id" element={<SingleArticle />} />
+        <Route path="/*" element={<Error message={'Route not found!'} />} />
       </Routes>
     </UserProvider>
   );
