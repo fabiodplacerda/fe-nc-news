@@ -67,12 +67,17 @@ const postComment = (article_id, username, body) => {
     });
 };
 
+
 const getTopics = () => {
   return axios
     .get(`https://nc-news-kx4n.onrender.com/api/topics`)
     .then(({ data }) => {
       return data;
     });
+}
+
+const deleteCommentById = id => {
+  return axios.delete(`https://nc-news-kx4n.onrender.com/api/comments/${id}`);
 };
 
 export {
@@ -83,4 +88,5 @@ export {
   getUsers,
   postComment,
   getTopics,
+  deleteCommentById,
 };
