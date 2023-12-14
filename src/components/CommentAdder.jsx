@@ -61,7 +61,9 @@ const CommentAdder = ({ article_id, setComments, setCommentCount }) => {
           {commentInput.length > 300 ? (
             <p className="error-msg">This comment is too long!</p>
           ) : null}
-          <button disabled={isLoading ? true : false}>
+          <button
+            disabled={isLoading || commentInput.length > 300 ? true : false}
+          >
             {isLoading ? 'Posting...' : 'Post comment'}
           </button>
           {success ? (
