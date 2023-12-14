@@ -58,15 +58,18 @@ const CommentAdder = ({ article_id, setComments, setCommentCount }) => {
             value={commentInput}
           ></textarea>
           <p>{commentInput.length} of 300 max characters</p>
+          {commentInput.length > 300 ? (
+            <p className="error-msg">This comment is too long!</p>
+          ) : null}
           <button disabled={isLoading ? true : false}>
             {isLoading ? 'Posting...' : 'Post comment'}
           </button>
-          <p className="success-msg">
-            {success ? 'comment successfully posted' : null}
-          </p>
-          <p className="error-msg">
-            {error ? 'something went wrong, please try again' : null}
-          </p>
+          {success ? (
+            <p className="success-msg">comment successfully posted</p>
+          ) : null}
+          {error ? (
+            <p className="error-msg">something went wrong, please try again</p>
+          ) : null}
         </form>
       </>
     );
