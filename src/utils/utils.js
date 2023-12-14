@@ -9,6 +9,9 @@ const getArticles = query => {
     })
     .then(({ data }) => {
       return data.articles;
+    })
+    .catch(({ response }) => {
+      return Promise.reject(response);
     });
 };
 
@@ -17,6 +20,9 @@ const getArticleById = id => {
     .get(`https://nc-news-kx4n.onrender.com/api/articles/${id}`)
     .then(({ data }) => {
       return data;
+    })
+    .catch(({ response }) => {
+      return Promise.reject(response);
     });
 };
 

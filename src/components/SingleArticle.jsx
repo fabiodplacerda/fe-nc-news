@@ -7,6 +7,7 @@ import Comments from './Comments';
 import Loading from './Loading';
 import ThumbUpAltIcon from '@mui/icons-material/ThumbUpAlt';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
+import Error from './Error';
 
 const SingleArticle = () => {
   const { article_id } = useParams();
@@ -14,13 +15,24 @@ const SingleArticle = () => {
   const [commentCount, setCommentCount] = useState(0);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(false);
+  const [isPageError, setIsPageError] = useState(false);
+  const [errorCode, setErrorCode] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
 
   useEffect(() => {
-    getArticleById(article_id).then(data => {
-      setArticle(data.article);
-      setCommentCount(data.article.comment_count);
-      setIsLoading(false);
-    });
+    getArticleById(article_id)
+      .then(data => {
+        setArticle(data.article);
+        setCommentCount(data.article.comment_count);
+        setIsLoading(false);
+        setIsPageError(false);
+      })
+      .catch(({ data, status }) => {
+        setIsLoading(false);
+        setIsPageError(true);
+        setErrorCode(status);
+        setErrorMsg(data.msg);
+      });
   }, []);
 
   const date = article.created_at;
@@ -48,6 +60,10 @@ const SingleArticle = () => {
     });
     setError(false);
   };
+
+  if (isPageError) {
+    return <Error message={`${errorCode}: ${errorMsg}`} />;
+  }
 
   return (
     <>

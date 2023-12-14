@@ -4,10 +4,14 @@ import ArticleCard from './ArticleCard';
 import Loading from './Loading';
 import Topics from './Topics';
 import { useSearchParams } from 'react-router-dom';
+import Error from './Error';
 
 const Articles = () => {
   const [articles, SetArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [pageError, setPageError] = useState(false);
+  const [errorMsg, setErrorMsg] = useState('');
+  const [errorCode, setErrorCode] = useState('');
 
   const [searchParams, setSearchParams] = useSearchParams();
 
@@ -18,14 +22,21 @@ const Articles = () => {
       .then(data => {
         SetArticles(data);
         setIsLoading(false);
+        setPageError(false);
       })
-      .catch(err => {
-        console.log(err);
+      .catch(({ data, status }) => {
+        setErrorCode(status);
+        setErrorMsg(data.msg);
+        setPageError(true);
+        setIsLoading(false);
       });
   }, [searchParams]);
 
   if (isLoading) {
     return <Loading dynamicText={'articles'} />;
+  }
+  if (pageError) {
+    return <Error message={`${errorCode}: ${errorMsg}`} />;
   }
 
   return (
