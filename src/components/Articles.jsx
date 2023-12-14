@@ -18,9 +18,25 @@ const Articles = () => {
   const [order, setOrder] = useState('DESC');
   const [searchParams, setSearchParams] = useSearchParams();
 
+  const validSortBy = ['votes', 'created_at', 'author', 'title', null];
+  const validOrderBy = ['ASC', 'DESC', null];
+
+  const sortBySearchParam = searchParams.get('sort_by');
+  const orderBySearchParam = searchParams.get('order');
+
   const query = searchParams.get('topic');
 
   useEffect(() => {
+    if (
+      !validSortBy.includes(sortBySearchParam) ||
+      !validOrderBy.includes(orderBySearchParam)
+    ) {
+      setIsLoading(false);
+      setPageError(true);
+      setErrorCode(400);
+      setErrorMsg('Bad request');
+      return;
+    }
     getArticles(query, sort, order)
       .then(data => {
         SetArticles(data);
