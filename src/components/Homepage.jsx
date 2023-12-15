@@ -7,6 +7,7 @@ const Homepage = ({ setIsHomepage }) => {
   const { user, setUser } = useContext(UserContext);
   const [input, setInput] = useState('');
   const [errorMessage, setErrorMessage] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,6 +25,7 @@ const Homepage = ({ setIsHomepage }) => {
   };
 
   const submitHandler = event => {
+    setIsLoading(true);
     event.preventDefault();
     getUsers().then(({ users }) => {
       const username = users.map(userData => userData.username);
@@ -31,9 +33,11 @@ const Homepage = ({ setIsHomepage }) => {
         setUser(input);
         setTimeout(() => {
           navigate('/articles');
+          setIsLoading(false);
         }, 1000);
       } else {
         setErrorMessage(true);
+        setIsLoading(false);
       }
     });
     setInput('');
@@ -72,7 +76,9 @@ const Homepage = ({ setIsHomepage }) => {
           <p className="login-error-msg">
             {errorMessage ? 'Please select one of the valid users' : null}
           </p>
-          <button>Login</button>
+          <button disabled={isLoading ? true : false}>
+            {isLoading ? 'Redirecting....' : 'Login'}
+          </button>
         </form>
       </div>
     </div>
