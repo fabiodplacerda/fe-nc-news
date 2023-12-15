@@ -10,7 +10,6 @@ const Header = () => {
       <nav>
         <Link to="/">Home</Link>
         <Link to="/articles">Articles</Link>
-        <Link>{user !== '' ? user : 'Login'}</Link>
       </nav>
     </header>
   );
