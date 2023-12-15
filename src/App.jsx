@@ -5,14 +5,22 @@ import Header from './components/Header';
 import Homepage from './components/Homepage';
 import { UserProvider } from './contexts/userContext';
 import Error from './components/Error';
+import { useState } from 'react';
 
 function App() {
+  const [isHomepage, setIsHomepage] = useState(false);
   return (
     <UserProvider>
-      <Header />
+      {isHomepage ? null : <Header />}
       <Routes>
-        <Route path="/" element={<Homepage />}></Route>
-        <Route path="/articles" element={<Articles />}></Route>
+        <Route
+          path="/"
+          element={<Homepage setIsHomepage={setIsHomepage} />}
+        ></Route>
+        <Route
+          path="/articles"
+          element={<Articles setIsHomepage={setIsHomepage} />}
+        ></Route>
         <Route path="/articles/:article_id" element={<SingleArticle />} />
         <Route path="/*" element={<Error message={'Route not found!'} />} />
       </Routes>
