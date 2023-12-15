@@ -19,9 +19,9 @@ const SortByForm = ({ setSort, setOrder, setSearchParams, query }) => {
   };
 
   return (
-    <form>
-      <label htmlFor="">Sort by</label>
-      <select onChange={changeHandler}>
+    <form id="sort-by-form">
+      <label htmlFor="sort-by-select">Sort by</label>
+      <select onChange={changeHandler} id="sort-by-select">
         <option value="votes,DESC">Most Popular </option>
         <option value="created_at,DESC">Most Recent Articles</option>
         <option value="created_at,ASC">Oldest Articles</option>

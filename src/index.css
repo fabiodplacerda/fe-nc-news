@@ -102,7 +102,7 @@ a {
 }
 
 .login-form button {
-  width: 50px;
+  width: 100px;
   margin: 0 auto;
 }
 
@@ -147,6 +147,35 @@ header nav {
   font-size: 1.6rem;
 }
 
+.topics {
+  margin-bottom: 15px;
+}
+
+.topic-link {
+  margin: 10px;
+  font-size: 20px;
+  background-color: #1e3340;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  transition: all 0.3s;
+}
+
+.topic-link:hover {
+  background-color: #2d4b5e;
+}
+
+#sort-by-form {
+  margin: 20px;
+}
+#sort-by-form label {
+  margin-right: 10px;
+}
+#sort-by-select {
+  border-radius: 10px;
+  padding: 3px;
+}
+
 #articles-list {
   display: flex;
   justify-content: center;
@@ -155,14 +184,50 @@ header nav {
 
 .article-card {
   width: 500px;
-  border: 1px solid black;
+  height: 400px;
   margin: 10px;
   text-align: center;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  transition: all 0.3s;
+}
+
+.article-card:hover {
+  background-color: #dfdbdb;
 }
 
 .article-card-img {
-  width: 300px;
+  width: 350px;
+  border-radius: 5px;
+}
+
+.article-title {
+  margin: 20px 20px 0px 20px;
+}
+
+.article-topic {
+  background-color: #1e3340;
+  font-size: 0.8rem;
+  color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.votes-comments-container {
+  display: flex;
+  align-items: center;
+}
+
+.votes-comments-container p {
+  margin-left: 3px;
+}
+
+#comment-icon {
+  margin-left: 12px;
 }
 
 @media only screen and (max-width: 507px) {
@@ -187,12 +252,6 @@ header nav {
   .article-card {
     width: 300px;
   }
-}
-
-.topic-link {
-  margin: 10px;
-  text-transform: capitalize;
-  font-size: 20px;
 }
 
 .escape-link {

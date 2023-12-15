@@ -7,7 +7,7 @@ import { useSearchParams } from 'react-router-dom';
 import Error from './Error';
 import SortByForm from './SortByForm';
 
-const Articles = () => {
+const Articles = ({ setIsHomepage }) => {
   const [articles, SetArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [pageError, setPageError] = useState(false);
@@ -27,6 +27,7 @@ const Articles = () => {
   const query = searchParams.get('topic');
 
   useEffect(() => {
+    setIsHomepage(false);
     if (
       !validSortBy.includes(sortBySearchParam) ||
       !validOrderBy.includes(orderBySearchParam)
@@ -61,7 +62,7 @@ const Articles = () => {
   return (
     <>
       <div id="articles">
-        <h2>Articles</h2>
+        <h2 className="articles-h2">Articles</h2>
         <Topics setIsLoading={setIsLoading} />
         <SortByForm
           setSort={setSort}

@@ -19,7 +19,7 @@ const Topics = ({ setIsLoading }) => {
   return (
     <ul className="topics">
       <Link to={'/articles'} className="topic-link" onClick={clickHandler}>
-        all
+        All
       </Link>
       {topics.map(topic => {
         return (
