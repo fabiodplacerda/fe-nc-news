@@ -1,6 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&display=swap');
+
 * {
   list-style-type: none;
   scroll-behavior: smooth;
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  height: 100vh;
+  font-size: 16px;
 }
 
 ul {
@@ -13,6 +22,171 @@ nav a {
 
 a {
   text-decoration: none;
+  color: #000;
+}
+
+/* #### Homepage styles */
+
+#homepage {
+  height: 100vh;
+  background-image: url('./components/assets/main-page-img.jpg');
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+}
+
+#homepage::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.welcome-page-text {
+  color: #fff;
+  text-align: center;
+  z-index: 10;
+  width: 65%;
+}
+
+.welcome-page-text h1 {
+  font-size: 3.125rem;
+}
+.welcome-page-text p {
+  margin-top: 20px;
+  font-size: 30px;
+}
+
+.login-container {
+  background-color: #1e3340;
+  width: 35%;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-user-text {
+  margin-bottom: 50px;
+  font-size: 2.19rem;
+  color: #fff;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-size: 1.44rem;
+}
+
+.login-form label {
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+#username {
+  padding: 3px;
+  margin: 10px auto;
+  width: 150px;
+}
+
+.login-form button {
+  width: 50px;
+  margin: 0 auto;
+}
+
+.login-error-msg {
+  color: red;
+  margin-bottom: 10px;
+}
+/* #### Homepage styles */
+
+/* #### Header styles */
+header {
+  background-color: #f2f2f2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+}
+
+header h1 {
+  color: #4d6473;
+  text-align: center;
+  padding-bottom: 30px;
+  font-size: 3.5rem;
+  font-family: 'Oswald', sans-serif;
+}
+
+header nav {
+  font-size: 1.5rem;
+}
+/* #### Header styles */
+
+/* #### Articles styles */
+#articles {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f2f2f2;
+}
+
+.articles-h2 {
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+#articles-list {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.article-card {
+  width: 500px;
+  border: 1px solid black;
+  margin: 10px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.article-card-img {
+  width: 300px;
+}
+
+@media only screen and (max-width: 507px) {
+  body {
+    background-color: lightblue;
+  }
+
+  .article-title {
+    font-size: 16px;
+  }
+  .article-card {
+    width: 400px;
+  }
+  .article-card-img {
+    width: 100px;
+  }
+}
+@media only screen and (max-width: 404px) {
+  body {
+    background-color: lightblue;
+  }
+  .article-card {
+    width: 300px;
+  }
 }
 
 .topic-link {
